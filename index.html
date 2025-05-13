@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>¿Quieres ser mi novia?</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     /* Estilos globales */
     body {
@@ -113,28 +111,31 @@
       transform: scale(1.1);
     }
 
-    /* Estilo para el mensaje de introducción */
-    .intro-message {
+    /* Estilo para el mensaje de agradecimiento */
+    .message-box {
       background-color: rgba(255, 255, 255, 0.9);
       border: 2px solid #ff4081;
-      padding: 20px;
+      padding: 30px;
       width: 90%;
-      max-width: 500px;
+      max-width: 600px;
       margin: 20px auto;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      font-size: 1rem;
+      font-size: 1.2em;
       color: #333;
       text-align: center;
-      display: block;
+      display: none; /* Ocultamos inicialmente */
       animation: fadeIn 1s ease-in-out;
-      backdrop-filter: blur(8px);
     }
 
-    .intro-message p {
-      font-size: 1.2rem;
+    .message-box p {
+      font-size: 1.3em;
       line-height: 1.6em;
-      font-family: 'Poppins', sans-serif;
+    }
+
+    .message-box .heart {
+      font-size: 2em;
+      color: #ff4081;
     }
 
     @keyframes fadeIn {
@@ -164,15 +165,6 @@
   </style>
 </head>
 <body>
-  <!-- Música de fondo -->
-  <audio id="backgroundMusic" loop autoplay>
-    <source src="https://www.youtube.com/watch?v=fp7d-kcfa8g" type="audio/mp3">
-    Tu navegador no soporta audio HTML5.
-  </audio>
-
-  <!-- Botón de control de música -->
-  <button onclick="toggleMusic()" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">🎵</button>
-
   <!-- Mensaje de introducción -->
   <div class="intro-message" id="introMessage">
     <p>He estado pensando mucho en esto, y quiero decirte algo que para mí es importante. La verdad es que cada vez que paso tiempo contigo, me doy cuenta de lo increíble que eres. Me encanta la forma en la que eres, cómo haces que los días sean mejores, y cómo me siento cuando estamos juntos.</p>
@@ -189,22 +181,36 @@
     </div>
   </div>
 
+  <!-- Contenedor del mensaje de agradecimiento -->
+  <div class="message-box" id="messageBox">
+    <h2>Gracias por decirme que sí</h2>
+    <p>
+      Gracias por hacerme la persona más feliz desde el momento que coincidimos, que conectamos, no sabes cuan contento he sido por los momentos juntos que hemos pasado y que me gustaría seguir pasando contigo. Se ha convertido en uno de los lugares más seguros que siempre me gustaría estar. 
+    </p>
+    <p>
+      Te quiero mucho ❤❤
+    </p>
+  </div>
+
   <script>
     const introMessage = document.getElementById("introMessage");
     const questionContainer = document.getElementById("questionContainer");
-    const backgroundMusic = document.getElementById("backgroundMusic");
+    const messageBox = document.getElementById("messageBox");
 
     function showQuestion() {
       introMessage.style.display = "none";  // Ocultamos el mensaje de introducción
       questionContainer.style.display = "block";  // Mostramos la pregunta
     }
 
-    function toggleMusic() {
-      if (backgroundMusic.paused) {
-        backgroundMusic.play();
-      } else {
-        backgroundMusic.pause();
-      }
+    function handleYes() {
+      alert('¡Sabía que dirías que sí! 😍');
+      console.log("Respuesta: Sí, ¡es una historia de amor!");
+      showMessage(); // Mostramos el mensaje de agradecimiento
+    }
+
+    function showMessage() {
+      questionContainer.style.display = "none"; // Ocultamos la pregunta
+      messageBox.style.display = "block"; // Mostramos el mensaje de agradecimiento
     }
   </script>
 </body>
