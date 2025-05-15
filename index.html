@@ -103,8 +103,8 @@
     .no {
       background-color: #e0e0e0;
       color: #333;
-      position: absolute;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      position: absolute; /* Hacemos que el botón pueda moverse dentro de su contenedor */
     }
 
     button:hover {
@@ -167,8 +167,8 @@
 <body>
   <!-- Mensaje de introducción -->
   <div class="intro-message" id="introMessage">
-    <p>He estado pensando mucho en esto, y quiero decirte algo que para mí es importante. La verdad es que cada vez que paso tiempo contigo, me doy cuenta de lo increíble que eres. Me encanta la forma en la que eres, cómo haces que los días sean mejores, y cómo me siento cuando estamos juntos.</p>
-    <button onclick="showQuestion()">¡Me encantaría saberlo! ❤️</button>
+    <p>He estado pensando mucho sobre esto y hay algo que siento que necesito decirte. Cada vez que paso tiempo contigo, me doy cuenta de lo increíble que eres. La forma en que eres, cómo haces que incluso los días más comunes se conviertan en algo especial… y cómo me siento tan a gusto y feliz cuando estamos juntos. Me haces ver las cosas de una manera diferente, y esa es una de las cosas que más valoro de ti. Quiero ser honesto contigo, porque lo que siento por ti es algo que no puedo ignorar. Me encantaría saber si también sientes lo mismo.</p>
+    <button onclick="confirmReveal()">¡Me encantaría saberlo! ❤️</button>
   </div>
 
   <!-- Contenedor de la pregunta -->
@@ -177,18 +177,17 @@
     <h1>¿Quieres ser mi novia?</h1>
     <div class="buttons">
       <button class="yes" onclick="handleYes()">Sí 💖</button>
-      <button class="no" id="noBtn">No 😢</button>
+      <button class="no" id="noBtn" onmouseover="moveButton()">No 😢</button> <!-- Botón dinámico -->
     </div>
   </div>
 
   <!-- Contenedor del mensaje de agradecimiento -->
   <div class="message-box" id="messageBox">
-    <h2>Gracias por decirme que sí</h2>
     <p>
-      Gracias por hacerme la persona más feliz desde el momento que coincidimos, que conectamos, no sabes cuan contento he sido por los momentos juntos que hemos pasado y que me gustaría seguir pasando contigo. Se ha convertido en uno de los lugares más seguros que siempre me gustaría estar. 
+      Desde el momento en que coincidimos y nos conectamos, me has hecho la persona más feliz. No te imaginas lo agradecido que estoy por todos los momentos que hemos compartido, y lo feliz que me hace pensar en todos los momentos que podemos seguir viviendo. A tu lado, he encontrado uno de esos lugares seguros en los que siempre quiero estar.
     </p>
     <p>
-      Te quiero mucho ❤❤
+      Te quiero muchísimo. ❤❤
     </p>
   </div>
 
@@ -196,6 +195,14 @@
     const introMessage = document.getElementById("introMessage");
     const questionContainer = document.getElementById("questionContainer");
     const messageBox = document.getElementById("messageBox");
+    const noBtn = document.getElementById("noBtn");
+
+    function confirmReveal() {
+      const confirmation = confirm("¿Segura que quieres saberlo?");
+      if (confirmation) {
+        showQuestion();
+      }
+    }
 
     function showQuestion() {
       introMessage.style.display = "none";  // Ocultamos el mensaje de introducción
@@ -211,6 +218,13 @@
     function showMessage() {
       questionContainer.style.display = "none"; // Ocultamos la pregunta
       messageBox.style.display = "block"; // Mostramos el mensaje de agradecimiento
+    }
+
+    function moveButton() {
+      // Generar nuevas posiciones aleatorias
+      const x = Math.random() * 300;
+      const y = Math.random() * 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
   </script>
 </body>
